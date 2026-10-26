@@ -15,11 +15,11 @@
     { label: 'Pas du tout d’accord', value: 0 }
   ];
 
-  var GREEN = { color: '#1E9E6A', bg: '#E6F6EF', ink: '#0E5F3F' };
-  var TEAL = { color: '#0D7B6E', bg: '#E6F4F1', ink: '#06413A' };
-  var GOLD = { color: '#C98A16', bg: '#FDF3E0', ink: '#8A5E10' };
-  var ORANGE = { color: '#C2611F', bg: '#FBEDE2', ink: '#7E3D12' };
-  var RED = { color: '#D64545', bg: '#FDECEA', ink: '#8E2C2C' };
+  var GREEN = { color: '#1E4D43' };
+  var TEAL = { color: '#4F8C7B' };
+  var GOLD = { color: '#9A6B12' };
+  var ORANGE = { color: '#B5532F' };
+  var RED = { color: '#8A3417' };
 
   var SCALES = {
     phq9: {
@@ -38,7 +38,7 @@
         'Avoir peu d’appétit, ou au contraire manger beaucoup trop',
         'Avoir une mauvaise opinion de vous-même, avoir le sentiment d’être nul(le) ou d’avoir déçu votre famille',
         'Avoir du mal à vous concentrer, par exemple pour lire ou suivre une conversation',
-        'Bouger ou parler si lentement que les autres ont pu le remarquer — ou au contraire être si agité(e) que vous aviez du mal à tenir en place',
+        'Bouger ou parler si lentement que les autres ont pu le remarquer, ou au contraire être si agité(e) que vous aviez du mal à tenir en place',
         'Penser qu’il vaudrait mieux mourir, ou envisager de vous faire du mal d’une manière ou d’une autre'
       ],
       bands: [
@@ -308,11 +308,11 @@
     return '<div class="crisis">' +
       '<h4>Une réponse qui compte</h4>' +
       '<p>Vous avez répondu avoir eu des pensées de mort ou l’envie de vous faire du mal. Même si c’est rare, c’est une raison suffisante d’en parler à quelqu’un aujourd’hui.</p>' +
-      '<p style="margin-top:12px">Si le danger est immédiat, appelez le <strong>SAMU au 1515</strong> ou les <strong>sapeurs-pompiers au 18</strong>. Vous pouvez aussi joindre directement l’<strong>hôpital psychiatrique de Thiaroye au 33 834 01 58</strong> ou le <strong>service de psychiatrie du CHNU Fann au 33 869 18 18</strong>. Si vous le pouvez, dites-le dès maintenant à une personne de confiance.</p>' +
-      '<div class="emergency-nums">' +
+      '<p>Si le danger est immédiat, appelez le <strong>SAMU au 1515</strong> ou les <strong>sapeurs-pompiers au 18</strong>. Vous pouvez aussi joindre directement l’<strong>hôpital psychiatrique de Thiaroye au 33 834 01 58</strong> ou le <strong>service de psychiatrie du CHNU Fann au 33 869 18 18</strong>. Si vous le pouvez, dites-le dès maintenant à une personne de confiance.</p>' +
+      '<div class="call-list">' +
       '<a href="tel:1515">Appeler le 1515</a>' +
       '<a href="tel:18">Appeler le 18</a>' +
-      '<a href="tel:+221338340158">Thiaroye · 33 834 01 58</a>' +
+      '<a href="tel:+221338340158">Thiaroye : 33 834 01 58</a>' +
       '</div></div>';
   }
 
@@ -323,12 +323,12 @@
     var crisis = scale.id === 'phq9' && state.answers[8] > 0;
 
     var html = '<div class="fade-in">';
-    html += '<div class="eyebrow">' + scale.kicker + ' · votre résultat</div>';
+    html += '<p class="label">' + scale.kicker + ', votre résultat</p>';
     html += '<div class="score-block">';
     html += '<div class="score-head">' +
       '<span class="score-num" style="color:' + band.theme.color + '">' + score + '</span>' +
       '<span class="score-max">sur ' + scale.max + '</span>' +
-      '<span class="score-band" style="background:' + band.theme.bg + ';color:' + band.theme.ink + '">' + band.label + '</span>' +
+      '<span class="score-band" style="background:' + band.theme.color + '">' + band.label + '</span>' +
       '</div>';
     html += gaugeHtml(scale, score);
     html += '</div>';
@@ -347,13 +347,13 @@
       '<h3>' + band.cta + '</h3>' +
       '<p>PsyConnect est un projet en cours de développement et l’application n’est pas encore ouverte. En attendant, parlez-en à votre médecin ou à un psychologue près de chez vous.</p>' +
       '<div class="row">' +
-      '<a class="btn btn--gold" href="index.html#application">Découvrir le projet</a>' +
-      '<a class="btn btn--onteal" href="index.html#faq">Questions fréquentes</a>' +
+      '<a class="btn btn--light" href="index.html#application">Découvrir le projet</a>' +
+      '<a class="btn btn--outline-light" href="index.html#faq">Questions fréquentes</a>' +
       '</div></div>';
 
     html += '<div class="result-actions">' +
-      '<button class="btn btn--ghost" type="button" id="btnRetry">Refaire ce test</button>' +
-      '<button class="btn btn--ghost" type="button" id="btnHub">Voir les autres tests</button>' +
+      '<button class="btn btn--quiet" type="button" id="btnRetry">Refaire ce test</button>' +
+      '<button class="btn btn--quiet" type="button" id="btnHub">Voir les autres tests</button>' +
       '</div>';
 
     html += '<p class="source-line">' + scale.source + ' Traduction française à usage informatif.</p>';
